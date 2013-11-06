@@ -1,0 +1,99 @@
+{% extends 'user/panel/base.html' %}
+{% block 'title' %}
+    Application Alexa
+{% endblock %}
+{% block 'content' %}
+    <div class="row-fluid">
+    <div class="span6">
+        <section class="widget">
+            <header>
+                <h4>Alexa Application</h4>
+            </header>
+            <div class="body">
+                <form name="application_alexa" method="post" action="">
+                    {% csrf_token %}
+                    <fieldset>
+                        <div class="control-group">
+                                <label for="country" class="control-label">
+                                    Select with search
+                                </label>
+                                <div class="controls">
+                                    <select id="category" name="category" data-placeholder="Select category" class="select-block-level chzn-select" tabindex="-1" name="category">
+                                        <option value="Shopping">Shopping</option>
+                                        <option value="Shopping/Antiques_and_Collectibles">Shopping/Antiques and Collectibles</option>
+                                        <option value="Shopping/Auctions">Shopping/Auctions</option>
+                                        <option value="Shopping/By_Region">Shopping/By Region</option>
+                                        <option value="Shopping/Children">Shopping/Children</option>
+                                        <option value="Shopping/Classifieds">Shopping/Classifieds</option>
+                                        <option value="Shopping/Clothing">Shopping/Clothing</option>
+                                        <option value="Shopping/Consumer_Electronics">Shopping/Consumer Electronics</option>
+                                        <option value="Shopping/Crafts">Shopping/Crafts</option>
+                                        <option value="Shopping/Death_Care">Shopping/Death Care</option>
+                                        <option value="Shopping/Directories">Shopping/Directories</option>
+                                        <option value="Shopping/Entertainment">Shopping/Entertainment</option>
+                                        <option value="Shopping/Ethnic_and_Regional">Shopping/Ethnic and Regional</option>
+                                        <option value="Shopping/Flowers">Shopping/Flowers</option>
+                                        <option value="Shopping/Food">Shopping/Food</option>
+                                        <option value="Shopping/General_Merchandise">Shopping/General Merchandise</option>
+                                        <option value="Shopping/Gifts">Shopping/Gifts</option>
+                                        <option value="Shopping/Health">Shopping/Health</option>
+                                        <option value="Shopping/Holidays">Shopping/Holidays</option>
+                                        <option value="Shopping/Home_and_Garden">Shopping/Home and Garden</option>
+                                        <option value="Shopping/Jewelry">Shopping/Jewelry</option>
+                                        <option value="Shopping/Music">Shopping/Music</option>
+                                        <option value="Shopping/Niche">Shopping/Niche</option>
+                                        <option value="Shopping/Office_Products">Shopping/Office Products</option>
+                                        <option value="Shopping/Pets">Shopping/Pets</option>
+                                        <option value="Shopping/Photography">Shopping/Photography</option>
+                                        <option value="Shopping/Publications">Shopping/Publications</option>
+                                        <option value="Shopping/Recreation">Shopping/Recreation</option>
+                                        <option value="Shopping/Sports">Shopping/Sports</option>
+                                        <option value="Shopping/Tobacco">Shopping/Tobacco</option>
+                                        <option value="Shopping/Tools">Shopping/Tools</option>
+                                        <option value="Shopping/Toys_and_Games">Shopping/Toys and Games</option>
+                                        <option value="Shopping/Travel">Shopping/Travel</option>
+                                        <option value="Shopping/Vehicles">Shopping/Vehicles</option>
+                                        <option value="Shopping/Visual_Arts">Shopping/Visual Arts</option>
+                                        <option value="Shopping/Weddings">Shopping/Weddings</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        <div class="control-group no-margin">
+                            <label class="control-label" for="page_number">Page number</label>
+                            <div class="input-prepend input-padding-increased">
+                                <span class="add-on"><i class="icon-plus"></i></span>
+                                <input type="text" required="required" name="page_number" value="{{ request.page_number }}" style="width:200%"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group no-margin">
+                            <div class="input-prepend input-padding-increased">
+                                <input type="submit" class="btn-primary" value="Submit" />
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </div>
+    <div class="span6">
+        <section class="widget">
+            <header>
+                <h4>Results</h4>
+            </header>
+            <div class="body">
+            {% if message %}
+                {{ message }}
+            {% elif results %}
+                    {% for result in results %}
+                        <a href="http://{{ result }}">{{ result }}</a><br/>
+                    {% endfor %}
+                {% else %}
+                    There will be output!
+            {% endif %}
+            </div>
+        </section>
+    </div>
+    </div>
+{% endblock %}

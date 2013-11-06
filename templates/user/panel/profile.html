@@ -1,0 +1,37 @@
+{% extends 'user/panel/base.html' %}
+{% block 'title' %}
+    Profile
+{% endblock %}
+{% block 'content' %}
+    <div class="row-fluid">
+    <div class="span12">
+    <form name="profile_update" method="post" action="">
+        <fieldset>
+                {% csrf_token %}
+            {% if message %}
+            <div class="control-group">
+                <i class="eicon-alert"></i>
+                <span class="color-{{ message.color }}">{{ message.text }}</span>
+            </div>
+            {% endif %}
+                    <div class="control-group">
+                        <label class="control-label" for="password">Jabber</label>
+                        <div class="control">
+                            <div class="input-prepend input-padding-increased">
+                                <span class="add-on">
+                                    <i class="icon-user icon-large"></i>
+                                </span>
+                                <input id="text" name="jabber" type="text" placeholder="Your Jabber" value="{{ user.email }}" />
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Validate &amp; Submit</button>
+                            <button type="button" class="btn">Cancel</button>
+                        </div>
+                    </div>
+        </fieldset>
+    </form>
+    </div>
+    </div>
+{% endblock %}
